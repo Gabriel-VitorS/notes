@@ -10,6 +10,7 @@ import {addDoc, collection, doc, getDoc, setDoc} from 'firebase/firestore'
 import {db} from "@/firebase"
 
 import { useCollection, useCurrentUser, useFirebaseAuth, useFirebaseStorage  } from 'vuefire';
+import { RouterView } from 'vue-router';
 
 const user = useCurrentUser()
 const auth = useFirebaseAuth()
@@ -135,37 +136,8 @@ function sair(){
     <button @click="buscarNotas">Buscar notas</button>
   </div>
   {{ notes?.data }}
+  <RouterView></RouterView>
 </template>
 
 <style>
-@import 'tailwindcss';
-
-@layer 
-base
- {
-  *, *::before, *::after {
-    
-box-sizing
-: border-box;
-  }
-
-  * {
-    
-margin
-: 0;
-    
-padding
-: 0;
-    
-box-sizing
-: border-box;
-  }
-
-html {
-    
-font-family
-: sans-serif;
-    /* color: #333; */
-  }
-}
 </style>
