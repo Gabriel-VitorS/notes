@@ -49,7 +49,11 @@ const searchedNotes = computed(()=>{
 
                         <Dropdown
                         :drop-down-icon="Cog">
-                            <button @click="signOut(auth!)" class="w-full flex justify-evenly rounded-[8px] py-2"><SquareArrowRightExit/> sair</button>
+                            <button @click="signOut(auth!)"
+                            class="w-full flex justify-evenly rounded-[8px] py-2 hover:bg-emerald-200 transition">
+                            <SquareArrowRightExit/>
+                             sair
+                            </button>
                             
                         </Dropdown>
                     </div>
@@ -63,7 +67,11 @@ const searchedNotes = computed(()=>{
 
                 <Dropdown
                 :drop-down-icon="Cog">
-                    <button @click="signOut(auth!)" class="w-full flex justify-evenly rounded-[8px] py-2"><SquareArrowRightExit/> sair</button>
+                    <button @click="signOut(auth!)"
+                    class="w-full flex justify-evenly rounded-[8px] py-2 hover:bg-emerald-200 transition">
+                        <SquareArrowRightExit/>
+                            sair
+                    </button>
                     
                 </Dropdown>
             </div>
@@ -81,10 +89,13 @@ const searchedNotes = computed(()=>{
             :title="note.title"
             :fixed="note.fixed"
             :key="note.id"
+            @click="$router.push({name: 'note', params: {id: note.id}})"
              />
         </main>
     </div>
-    <div class="absolute  md:right-10 md:bottom-10 right-5 bottom-10 rounded-full cursor-pointer bg-[#006045]">
+    <div
+    @click="$router.push({name: 'note', params: {id: 'new'}})"
+    class="fixed  md:right-10 md:bottom-10 right-5 bottom-10 rounded-full cursor-pointer bg-[#006045]">
         <Plus :size="50" color="#FFFFFF"  stroke-width="1"></Plus>
     </div>
 </template>
