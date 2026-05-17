@@ -3,6 +3,7 @@ import { createRouter, createWebHistory } from 'vue-router'
 import LoginView from '@/views/LoginView.vue'
 import RegisterView from '@/views/RegisterView.vue'
 import NotesView from '@/views/NotesView.vue'
+import NoteView from '@/views/NoteView.vue'
 
 import { getCurrentUser } from 'vuefire'
 
@@ -15,6 +16,14 @@ const router = createRouter({
       path: '/notas', 
       component: NotesView, 
       name: 'notes',
+      meta: {
+        requiresAuth: true
+      }
+    },
+    {
+      path: '/notas/:id',
+      component: NoteView,
+      name: 'note',
       meta: {
         requiresAuth: true
       }

@@ -4,10 +4,10 @@ import type { Timestamp } from 'firebase/firestore';
 
 defineProps<{
     color: string,
-    content: string,
+    content: string | undefined,
     createdAt: Timestamp,
     fixed: boolean,
-    title: string
+    title: string | undefined
 }>()
 </script>
 
@@ -19,7 +19,7 @@ defineProps<{
             <h2 class="font-medium truncate">{{ title}}</h2> 
         </section>
         <section class="h-full max-h-[145px] truncate-content">
-           <p class="text-xs"> {{ content }}</p>
+           <p class="text-xs whitespace-pre-wrap"> {{ content }}</p>
         </section>
     </div>
 </template>
