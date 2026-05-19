@@ -18,8 +18,11 @@ const selectedNote = computed(()=>{
     })
 })
 
-const titleText = ref()
-const contentText = ref()
+const titleRef = ref<HTMLElement | null>(null)
+const contentRef = ref<HTMLElement | null>(null)
+
+const titleText = ref('')
+const contentText = ref('')
 const isFixed = ref(false)
 const content = ref<HTMLElement | null>(null)
 
@@ -101,7 +104,16 @@ async function exlodeNote(noteId: string) {
 }
 
 onMounted(()=>{
-    if(noteId.value == 'new')
+    titleText.value = selectedNote.value[0]?.title ?? ''
+    contentText.value = selectedNote.value[0]?.content ?? ''
+
+    if(titleRef.value)
+        titleRef.value.innerText = titleText.value
+
+    if(contentRef.value)
+        contentRef.value.innerText = contentText.value
+
+    if(noteId.value == 'new'){}
         content.value?.focus()
 })
 
@@ -141,19 +153,17 @@ onMounted(()=>{
                 <div class="md:w-[600px]">
 
                     <h1
-                    ref="title" 
+                    ref="titleRef" 
                     @input="onInputTitle"
                     contenteditable="true"
                     class="focus:outline-none mb-2 text-xl font-medium"
                     data-placeholder="Título"
                     id="title">
-                        {{ selectedNote[0]?.title }}
                     </h1>
-                    <p ref="content"
+                    <p ref="contentRef"
                      contenteditable="true"
                      @input="onInputContent"
                      class="focus:outline-none whitespace-pre-wrap">
-                        {{ selectedNote[0]?.content }}
                     </p>
                 </div>
             </section>
