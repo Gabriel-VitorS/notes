@@ -4,25 +4,25 @@ import { ref } from 'vue';
 
 
 const dropDownGroup = ref(null)
-const hideDropdown = ref(true)
+const hideDropdown = ref(false)
 
 defineProps<{
     dropDownIcon: Function
 }>()
 
 function showDrop(){
-    hideDropdown.value =false
+    hideDropdown.value = true
 }
 
 function hideDrop(){
-    hideDropdown.value =true
+    hideDropdown.value = false
 }
 </script>
 
 <template>
 
-<div v-if="!hideDropdown" @click="hideDrop"
- class=" top-0 right-0 w-dvw absolute h-dvh backdrop-blur-[2px]">
+<div v-if="hideDropdown" @click="hideDrop"
+ class=" top-0 right-0 w-dvw absolute h-dvh backdrop-blur-[2px] z-9">
 
 </div>
 
@@ -30,7 +30,8 @@ function hideDrop(){
     <component :is="dropDownIcon" @click="showDrop"
     class="cursor-pointer" />
     
-    <div ref="dropDownGroup" class="absolute right-5 z-10 bg-grey-200" :class="{'hidden': hideDropdown}">
+    <div ref="dropDownGroup"
+     class="absolute right-5 z-10 bg-grey-200 transition-transform scale-0 opacity-0" :class="{'opacity-100 scale-100': hideDropdown}">
         <div class="px-2 pt-2 pb-2 bg-slate-100 shadow-dropdown rounded-[12px] w-[170px]">
             <slot></slot>  
         </div>
