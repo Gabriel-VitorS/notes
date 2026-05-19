@@ -7,6 +7,7 @@ import NotesCard from '@/components/ui/NotesCard.vue';
 import { Cog, Plus,Search, SquareArrowRightExit } from "@lucide/vue";
 import Dropdown from '@/components/ui/Dropdown.vue';
 import { computed, ref } from 'vue';
+import router from '@/router';
  
 const auth = useFirebaseAuth()
 const notesStore = useNotesStore()
@@ -31,6 +32,11 @@ const searchedNotes = computed(()=>{
     })
 })
 
+async function loggout(){
+    await auth?.signOut().finally(()=> router.push('/'))
+    
+}
+
 </script>
 
 <template>
@@ -49,7 +55,7 @@ const searchedNotes = computed(()=>{
 
                         <Dropdown
                         :drop-down-icon="Cog">
-                            <button @click="signOut(auth!)"
+                            <button @click="loggout"
                             class="w-full flex justify-evenly rounded-[8px] py-2 hover:bg-emerald-200 transition">
                             <SquareArrowRightExit/>
                              sair
