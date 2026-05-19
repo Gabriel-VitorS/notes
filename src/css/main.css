@@ -1,0 +1,21 @@
+@import 'tailwindcss';
+
+body{
+  @apply bg-slate-100 h-dvh
+}
+
+button{
+  @apply cursor-pointer
+}
+
+button:disabled{
+  @apply opacity-80 cursor-not-allowed
+}
+
+input{
+  @apply h-8 p-1 rounded-[8px] border w-full
+}
+
+.invalid-feedback{
+  @apply text-red-600 text-xs
+}
