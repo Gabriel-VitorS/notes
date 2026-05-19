@@ -32,11 +32,15 @@ const router = createRouter({
 })
 
 router.beforeEach(async (to)=>{
-  if(to.meta.requiresAuth){
-    const user = await getCurrentUser()
+  const user = await getCurrentUser()
 
+  if(to.name == 'login')
+    if(user) return '/notas'
+
+  if(to.meta.requiresAuth)
     if(!user) return '/'
-  }
+
+
 })
 
 export default router
