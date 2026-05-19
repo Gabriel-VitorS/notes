@@ -24,7 +24,6 @@ const contentRef = ref<HTMLElement | null>(null)
 const titleText = ref('')
 const contentText = ref('')
 const isFixed = ref(false)
-const content = ref<HTMLElement | null>(null)
 
 const selectedColor = ref('#E7E5E4')
 const colors = ['#ECFDF5', '#FDE99D', '#D9E8FC', '#B0E9CA', '#FFD8F4', '#E7E5E4']
@@ -113,13 +112,13 @@ onMounted(()=>{
     if(contentRef.value)
         contentRef.value.innerText = contentText.value
 
-    if(noteId.value == 'new'){}
-        content.value?.focus()
+    if(noteId.value == 'new')
+        contentRef.value?.focus()
 })
 
 </script>
 <template>
-    <div class="h-dvh" :style="{backgroundColor: selectedColor}">
+    <div class="h-dvh overflow-auto" :style="{backgroundColor: selectedColor}">
         
         <main class="grid grid-rows-1 gap-y-7 p-3">
             <header class="flex justify-between">
@@ -149,7 +148,7 @@ onMounted(()=>{
                     </div>
                 </Dropdown>
             </header>
-            <section class="md:flex md:justify-center">
+            <section class="md:flex md:justify-center ">
                 <div class="md:w-[600px]">
 
                     <h1
@@ -163,7 +162,7 @@ onMounted(()=>{
                     <p ref="contentRef"
                      contenteditable="true"
                      @input="onInputContent"
-                     class="focus:outline-none whitespace-pre-wrap">
+                     class="focus:outline-none whitespace-pre-wrap h-[80dvh] overflow-auto">
                     </p>
                 </div>
             </section>
