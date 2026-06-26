@@ -33,7 +33,12 @@ const searchedNotes = computed(()=>{
 })
 
 async function loggout(){
-    await auth?.signOut().finally(()=> router.push('/'))
+    try {
+        
+        await auth?.signOut().finally(()=> router.push('/'))
+    } catch (error) {
+        console.log(error)
+    }
     
 }
 
@@ -73,7 +78,7 @@ async function loggout(){
 
                 <Dropdown
                 :drop-down-icon="Cog">
-                    <button @click="signOut(auth!)"
+                    <button @click="loggout"
                     class="w-full flex justify-evenly rounded-[8px] py-2 hover:bg-emerald-200 transition">
                         <SquareArrowRightExit/>
                             sair
